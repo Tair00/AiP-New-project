@@ -41,4 +41,5 @@ router.get('/leo', function(req, res, next) {
       desc: "Прирожденный лидер"
   });
 });
+
 module.exports = router;
