@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/all')
 
 // view engine setup
 app.engine('ejs',require('ejs-locals'));
