@@ -3,8 +3,9 @@ var data = require("./data.js").data
 
 MongoClient.connect("mongodb://localhost:27017/all", function(err,db){
     if(err) throw err
+    db.dropDatabase()
     var collection = db.collection("hero")
-    collection.insertOne({name:"Леонардо"},function(err,result){
+    collection.insertMany(data,function(err,result){
         db.close()
     })
 })
