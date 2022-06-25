@@ -10,7 +10,7 @@ var heroes = require('./routes/heroes');
 var app = express();
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/all')
-
+var session = require("express-session")
 // view engine setup
 app.engine('ejs',require('ejs-locals'));
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +22,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
+app.use(session({
+  secret: "VinniIsHero",
+  cookie:{maxAge:60*1000}
+}))
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/heroes', heroes);

@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
+    <title> TMNT</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/bootstrap/dist/css/bootstrap.css"
+    rel="stylesheet" type="text/css">
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.js"></script>
 </head>
-<body>
-  
-<nav class="navbar navbar-expand-sm bg-light navbar-light">
-  <div class="container-fluid">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-       <a class="nav-link active" href="/leo">Леонардо</a>
-      </li>
-    <li class="nav-item">
-       <a class="nav-link" href="/mike">Микеланджело</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/raf">Рафаэль </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="/don">Донателло</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-    <%- body %>
-</body>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                   TMNT
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <% menu.forEach(function(hero){ %>
+                        <a class="nav-link" href="/heroes/<%=hero.nick%>"><%=hero.title%></a>
+                    <% }) %>  
+                </div>                  
+                </div>
+            </div>
+        </nav>
+        <%- body %>
+    </body>
 </html>
-
-  
