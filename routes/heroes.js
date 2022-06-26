@@ -2,14 +2,14 @@ var express = require('express')
 var router = express.Router()
 var Hero = require("../models/hero").Hero
 var async = require("async")
-
+var checkAuth = require("./../middleware/checkAuth.js")
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     res.send('Новый маршрутизатор, для маошрутов, начинающихся с heroes')
 });
 
 /* Страница героев */
-router.get('/:nick', function(req, res, next) {
+router.get('/:nick', checkAuth,function(req, res, next) {
     async.parallel([
             function(callback){
                 Hero.findOne({nick:req.params.nick}, callback)
