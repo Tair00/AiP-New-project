@@ -15,9 +15,9 @@ router.get('/', function(req, res, next) {
 
 /* GET login/registration page. */
 router.get('/logreg', function(req, res, next) {
-    res.render('logreg',{title: 'Вход'});
+    res.render('logreg',{error:null});
 });   
-
+ 
 /* POST login/registration page. */
 router.post('/logreg', function(req, res, next) {
     var username = req.body.username
@@ -27,16 +27,17 @@ router.post('/logreg', function(req, res, next) {
         if(user){
             if(user.checkPassword(password)){
                 req.session.user = user._id
-                res.redirect('/')
-            } else {
-                res.render('logreg', {title: 'Вход'})
-            }
+                res.redirect('/')}
+                else {
+                    res.render('logreg',{error:"Пароль не верный"});
+                }
         } else {
         var user = new User({username:username,password:password})
         user.save(function(err,user){
             if(err) return next(err)
             req.session.user = user._id
             res.redirect('/')
+            
         })        
         }
     })
